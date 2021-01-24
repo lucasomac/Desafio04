@@ -13,9 +13,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:hint="@string/email"
+        android:hint="@string/name"
         android:labelFor="@+id/editTextTextEmailAddress"
-        app:placeholderText="@string/email">
+        app:placeholderText="@string/name">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextTextName"
+            style="@style/Theme.Desafio04.TextInput"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="textAutoComplete" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Theme.Desafio04.TextInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:hint="@string/email"
+        android:labelFor="@+id/editTextTextName"
+        app:placeholderText="@string/name">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextTextEmailAddress"
@@ -43,30 +60,12 @@
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
-
-    <com.google.android.material.checkbox.MaterialCheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/remember" />
-
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnLogin"
+        android:id="@+id/btnCreateAccount"
         style="@style/Theme.Desafio04.MaterialButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="@string/login" />
+        android:text="@string/new_account" />
 
-    <TextView
-        android:id="@+id/tvCreateAccouont"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="@dimen/pading"
-        android:background="@color/red_button"
-        android:backgroundTint="@color/white_200"
-        android:gravity="center"
-        android:text="@string/new_account"
-        android:textSize="20sp" />
 </LinearLayout>

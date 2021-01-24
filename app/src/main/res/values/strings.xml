@@ -15,4 +15,5 @@
     <string name="email">E-mail</string>
     <string name="pasword">Password</string>
     <string name="insertEmail">Insira seu Email</string>
+    <string name="name">Name</string>
 </resources>

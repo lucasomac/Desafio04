@@ -5,11 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/splash"
-    tools:context=".LoginActivity">
+    tools:context=".RegisterActivity">
 
     <include
-        android:id="@+id/includeLoginFields"
-        layout="@layout/login_fields"
+        android:id="@+id/includeRegisterFields"
+        layout="@layout/register_fields"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
