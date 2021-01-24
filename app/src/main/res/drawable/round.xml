@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:shape="rectangle">
+
+    <corners android:radius="@dimen/radius" />
+
+    <padding
+        android:bottom="@dimen/pading"
+        android:left="@dimen/pading"
+        android:right="@dimen/pading"
+        android:top="@dimen/pading" />
+
+    <solid android:color="@color/white" />
+
+    <stroke
+        android:width="1dp"
+        android:color="@color/black"
+        android:dashWidth="1dp"
+        android:dashGap="1dp" />
+</shape>
