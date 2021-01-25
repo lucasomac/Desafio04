@@ -25,7 +25,6 @@ class GameFragment : Fragment(), GameAdapter.OnClickGame {
         adapter = GameAdapter(this)
         val gridLayoutManager = GridLayoutManager(context, 3)
         gridLayoutManager.isUsingSpansToEstimateScrollbarDimensions = true
-        gridLayoutManager.isItemPrefetchEnabled = true
         items = arrayListOf(
             Game("", "GOD", 2015),
             Game("", "GOD", 2015),
@@ -47,8 +46,15 @@ class GameFragment : Fragment(), GameAdapter.OnClickGame {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.fab.setOnClickListener {
+            findNavController().navigate(R.id.action_gameFragment_to_cadastroFragment)
+        }
+    }
+
     override fun onClickGame(position: Int) {
-        findNavController().navigate()
+        findNavController().navigate(R.id.action_gameFragment_to_detailFragment)
         Toast.makeText(context, items[position].toString(), Toast.LENGTH_LONG).show()
     }
 }

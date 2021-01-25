@@ -23,9 +23,8 @@ class CadastroFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        view.findViewById<Button>(R.id.button_first).setOnClickListener {
-            findNavController().navigate(R.id.action_gameFragment_to_cadastroFragment)
+        binding.btnCadastrar.setOnClickListener {
+            findNavController().navigate(R.id.action_cadastroFragment_to_detailFragment)
         }
     }
 }

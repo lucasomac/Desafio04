@@ -22,7 +22,7 @@ class GameAdapter(
 
     override fun onBindViewHolder(holder: GameViewHolder, position: Int) {
         val item = games[position]
-        holder.ivCapa.setImageURI(Uri.parse(item.image))
+//        holder.ivCapa.setImageURI(Uri.parse(item.image))
         holder.tvName.text = item.name
         holder.tvAno.text = item.ano.toString()
     }

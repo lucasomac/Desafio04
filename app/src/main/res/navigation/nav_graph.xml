@@ -11,10 +11,17 @@
         android:label="fragment_game_list"
         tools:layout="@layout/fragment_game_list" >
         <action
+            android:id="@+id/action_gameFragment_to_detailFragment"
+            app:destination="@id/detailFragment"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@anim/fragment_open_enter"
+            app:popExitAnim="@anim/fragment_open_exit" />
+        <action
             android:id="@+id/action_gameFragment_to_cadastroFragment"
             app:destination="@id/cadastroFragment"
             app:enterAnim="@anim/fragment_fade_enter"
-            app:exitAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
             app:popEnterAnim="@anim/fragment_open_enter"
             app:popExitAnim="@anim/fragment_open_exit" />
     </fragment>
@@ -22,10 +29,40 @@
         android:id="@+id/detailFragment"
         android:name="br.com.lucolimac.desafio04.DetailFragment"
         android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail" />
+        tools:layout="@layout/fragment_detail" >
+        <action
+            android:id="@+id/action_detailFragment_to_gameFragment"
+            app:destination="@id/gameFragment"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@anim/fragment_open_enter"
+            app:popExitAnim="@anim/fragment_open_exit" />
+        <action
+            android:id="@+id/action_detailFragment_to_cadastroFragment"
+            app:destination="@id/cadastroFragment"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@anim/fragment_open_enter"
+            app:popExitAnim="@anim/fragment_open_exit" />
+    </fragment>
     <fragment
         android:id="@+id/cadastroFragment"
         android:name="br.com.lucolimac.desafio04.CadastroFragment"
         android:label="fragment_cadastro"
-        tools:layout="@layout/fragment_cadastro" />
+        tools:layout="@layout/fragment_cadastro" >
+        <action
+            android:id="@+id/action_cadastroFragment_to_detailFragment"
+            app:destination="@id/detailFragment"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@anim/fragment_open_enter"
+            app:popExitAnim="@anim/fragment_open_exit" />
+        <action
+            android:id="@+id/action_cadastroFragment_to_gameFragment"
+            app:destination="@id/gameFragment"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@anim/fragment_open_enter"
+            app:popExitAnim="@anim/fragment_open_exit" />
+    </fragment>
 </navigation>

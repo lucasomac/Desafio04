@@ -9,6 +9,7 @@ import android.widget.Button
 import androidx.navigation.fragment.findNavController
 import br.com.lucolimac.desafio04.databinding.FragmentCadastroBinding
 import br.com.lucolimac.desafio04.databinding.FragmentDetailBinding
+import br.com.lucolimac.desafio04.databinding.FragmentGameListBinding
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -19,16 +20,19 @@ class DetailFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_detail, container, false)
+        _binding = FragmentDetailBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        view.findViewById<Button>(R.id.button_second).setOnClickListener {
-            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+        binding.btnGoBack.setOnClickListener {
+            findNavController().navigate(R.id.action_detailFragment_to_gameFragment)
+        }
+        binding.btnEdit.setOnClickListener {
+            findNavController().navigate(R.id.action_detailFragment_to_cadastroFragment)
         }
     }
 }

@@ -17,4 +17,6 @@
     <string name="insertEmail">Insira seu Email</string>
     <string name="name">Name</string>
     <string name="search">Search games</string>
+    <string name="adicionar_game">Adicionar Game</string>
+    <string name="cadastrar">CADASTRAR</string>
 </resources>
