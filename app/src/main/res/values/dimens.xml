@@ -2,4 +2,5 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="pading">8dp</dimen>
     <dimen name="radius">12dp</dimen>
+    <dimen name="text_margin">8dp</dimen>
 </resources>

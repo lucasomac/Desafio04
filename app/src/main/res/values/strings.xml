@@ -16,4 +16,5 @@
     <string name="pasword">Password</string>
     <string name="insertEmail">Insira seu Email</string>
     <string name="name">Name</string>
+    <string name="search">Search games</string>
 </resources>
