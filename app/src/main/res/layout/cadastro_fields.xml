@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/round"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Theme.Desafio04.TextInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:hint="@string/name"
+        android:labelFor="@+id/editTextTextEmailAddress"
+        app:placeholderText="@string/name">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextTextName"
+            style="@style/Theme.Desafio04.TextInput"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Theme.Desafio04.TextInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:hint="@string/created"
+        android:labelFor="@+id/editTextTextCreatedAt"
+        app:placeholderText="@string/created">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextTextCreatedAt"
+            style="@style/Theme.Desafio04.TextInput"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Theme.Desafio04.TextInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:hint="@string/description"
+        android:labelFor="@+id/editTextTextDescription"
+        app:placeholderText="@string/description">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextTextDescription"
+            style="@style/Theme.Desafio04.TextInput"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/white_200"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnCreateGame"
+        style="@style/Theme.Desafio04.MaterialButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/save_game" />
+</LinearLayout>
