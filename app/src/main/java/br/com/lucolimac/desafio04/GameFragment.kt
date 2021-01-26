@@ -30,14 +30,6 @@ class GameFragment : Fragment(), GameAdapter.OnClickGame {
             Game("", "GOD", 2015),
             Game("", "GOD", 2015),
             Game("", "GOD", 2015),
-
-            Game("", "GOD", 2015),
-            Game("", "GOD", 2015),
-            Game("", "GOD", 2015),
-            Game("", "GOD", 2015),
-            Game("", "GOD", 2015),
-            Game("", "GOD", 2015),
-            Game("", "GOD", 2015)
         )
         adapter.addComic(items)
         binding.list.adapter = adapter
