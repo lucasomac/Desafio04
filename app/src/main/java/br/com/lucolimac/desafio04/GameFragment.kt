@@ -1,5 +1,6 @@
 package br.com.lucolimac.desafio04
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -26,10 +27,10 @@ class GameFragment : Fragment(), GameAdapter.OnClickGame {
         val gridLayoutManager = GridLayoutManager(context, 3)
         gridLayoutManager.isUsingSpansToEstimateScrollbarDimensions = true
         items = arrayListOf(
-            Game("", "GOD", 2015),
-            Game("", "GOD", 2015),
-            Game("", "GOD", 2015),
-            Game("", "GOD", 2015),
+            Game(Uri.parse(""), "GOD", 2015,"TESTE"),
+            Game(Uri.parse(""), "GOD", 2015,"TESTE"),
+            Game(Uri.parse(""), "GOD", 2015,"TESTE"),
+            Game(Uri.parse(""), "GOD", 2015,"TESTE"),
         )
         adapter.addComic(items)
         binding.list.adapter = adapter

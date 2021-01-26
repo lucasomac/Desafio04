@@ -24,7 +24,7 @@ class GameAdapter(
         val item = games[position]
 //        holder.ivCapa.setImageURI(Uri.parse(item.image))
         holder.tvName.text = item.name
-        holder.tvAno.text = item.ano.toString()
+        holder.tvAno.text = item.year.toString()
     }
 
     override fun getItemCount(): Int = games.size

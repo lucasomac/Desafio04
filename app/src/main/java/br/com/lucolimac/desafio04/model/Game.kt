@@ -1,6 +1,10 @@
 package br.com.lucolimac.desafio04.model
 
-data class Game(val image: String, val name: String, val ano: Int) {
+import android.net.Uri
+import java.io.Serializable
+
+data class Game(var image: Uri, var name: String, var year: Int, var overview: String) :
+    Serializable {
     override fun toString(): String = name
 }
 //
