@@ -1,41 +1,38 @@
 package br.com.lucolimac.desafio04
 
+import android.content.Intent
 import android.net.Uri
 import android.util.Log
+import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import br.com.lucolimac.desafio04.model.Game
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
 
 
 class CadastroFragmentViewModel : ViewModel() {
     // Create a storage reference from the app
-    var firebaseStorage = FirebaseStorage.getInstance()
-    var dbFireStorage = FirebaseFirestore.getInstance()
-    var crFireStorage = dbFireStorage.collection("games")
-    var gameImageRef: StorageReference = firebaseStorage.getReference("images")
+    var dbFireStore = FirebaseFirestore.getInstance()
+    var crFireStorage = dbFireStore.collection("games")
     val games = MutableLiveData<List<Game>>()
     val game = MutableLiveData<Game>()
-
+    val photo = MutableLiveData<String>()
     fun getGameToInsert(
         image: String,
         name: String,
         year: Int,
         overview: String
-    ): MutableMap<String, Any> {
-        val game: MutableMap<String, Any> = HashMap()
+    ): MutableMap<String, String> {
+        val game: MutableMap<String, String> = HashMap()
         game["image"] = image
         game["name"] = name
-        game["year"] = year
+        game["year"] = year.toString()
         game["overview"] = overview
         return game
     }
 
-    fun sendGame(game: MutableMap<String, Any>) {
+    fun sendGame(game: MutableMap<String, String>) {
         val nome = game["name"]
-        Log.i("TEXTO1", game["name"].toString())
         crFireStorage.document(nome.toString()).set(game).addOnSuccessListener {
 //            Log.i("STORE", it.toString())
         }.addOnFailureListener {
@@ -43,8 +40,8 @@ class CadastroFragmentViewModel : ViewModel() {
         }
     }
 
-    fun updateGame(name: String, game: MutableMap<String, Any>) {
-        crFireStorage.document(name).update(game)
+    fun updateGame(name: String, game: MutableMap<String, String>) {
+        crFireStorage.document(name).update(game as Map<String, Any>)
 
     }
 
@@ -71,6 +68,10 @@ class CadastroFragmentViewModel : ViewModel() {
             }
     }
 
+    fun setUrlImage(image: String) {
+        photo.value = image
+    }
+
     fun readGames() {
         crFireStorage.get()
             .addOnCompleteListener { task ->
@@ -92,4 +93,7 @@ class CadastroFragmentViewModel : ViewModel() {
                 }
             }
     }
+    //Configura a imagem para
+
+
 }
