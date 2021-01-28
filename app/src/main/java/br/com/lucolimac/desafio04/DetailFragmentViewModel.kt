@@ -16,7 +16,7 @@ class DetailFragmentViewModel : ViewModel() {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     game.value = Game(
-                        Uri.parse(task.result!!.data!!["image"] as String?),
+                        task.result!!.data!!["image"] as String,
                         task.result!!.data!!["name"] as String,
                         task.result!!.data!!["year"].toString().toInt(),
                         task.result!!.data!!["overview"] as String

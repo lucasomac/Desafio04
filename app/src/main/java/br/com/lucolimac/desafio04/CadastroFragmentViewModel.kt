@@ -56,7 +56,7 @@ class CadastroFragmentViewModel : ViewModel() {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     game.value = Game(
-                        task.result!!.data!!["image"] as Uri,
+                        task.result!!.data!!["image"] as String,
                         task.result!!.data!!["name"] as String,
                         task.result!!.data!!["year"] as Int,
                         task.result!!.data!!["overview"] as String
@@ -80,7 +80,7 @@ class CadastroFragmentViewModel : ViewModel() {
                     for (document in task.result!!) {
                         list.add(
                             Game(
-                                document["image"] as Uri,
+                                document["image"] as String,
                                 document["name"] as String,
                                 document["year"] as Int,
                                 document["overview"] as String

@@ -1,15 +1,12 @@
 package br.com.lucolimac.desafio04
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
@@ -17,9 +14,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import br.com.lucolimac.desafio04.databinding.FragmentCadastroBinding
-import br.com.lucolimac.desafio04.model.Game
+import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.ktx.storage
 import com.squareup.picasso.Picasso
 import java.util.*
 
@@ -28,8 +28,11 @@ class CadastroFragment : Fragment() {
     private val binding get() = _binding
     private val CODE_IMAGE = 1000
     var url = ""
-    var firebaseStorage = FirebaseStorage.getInstance()
-    var gameImageRef: StorageReference = firebaseStorage.getReference(Date().toInstant().toString())
+
+    private lateinit var firebaseStorage: FirebaseStorage
+    private lateinit var firebaseStorageReference: StorageReference
+    private lateinit var firebaseFirestore: FirebaseFirestore
+    private lateinit var firebaseFirestoreReference: CollectionReference
     val args: CadastroFragmentArgs by navArgs()
     val viewModel by viewModels<CadastroFragmentViewModel> {
         object : ViewModelProvider.Factory {
@@ -45,7 +48,10 @@ class CadastroFragment : Fragment() {
     ): View {
         _binding = FragmentCadastroBinding.inflate(inflater, container, false)
         // Inflate the layout for this fragment
-
+        firebaseStorage = FirebaseStorage.getInstance()
+        firebaseStorageReference = firebaseStorage.getReference("games.jpg")
+        firebaseFirestore = FirebaseFirestore.getInstance()
+        firebaseFirestoreReference = firebaseFirestore.collection("games")
         return binding.root
     }
 
@@ -93,30 +99,28 @@ class CadastroFragment : Fragment() {
 
     fun setIntent() {
         val intent = Intent()
-        intent.type = "image/"
+        intent.type = "image/*"
         intent.action = Intent.ACTION_GET_CONTENT
         startActivityForResult(
-            Intent.createChooser(intent, "Captura Imagem"),
-            CODE_IMAGE
+            Intent.createChooser(intent, "Captura Imagem"), CODE_IMAGE
         )
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == CODE_IMAGE) {
-            val uploadTask = gameImageRef.putFile(data!!.data!!)
+            val uploadTask = firebaseStorageReference.putFile(data?.data!!)
             uploadTask.continueWith { task ->
                 if (task.isSuccessful) {
-                    Toast.makeText(context, "Enviando imagem", Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, "Imagem enviada", Toast.LENGTH_LONG).show()
                 }
-                gameImageRef.downloadUrl
+                firebaseStorageReference.downloadUrl
             }.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-//                    val downloadUri = gameImageRef.downloadUrl
-                    val downloadUri = task.result
-                    Log.i("TEXTO1", downloadUri.toString())
-                    viewModel.setUrlImage(downloadUri.toString())
-                    Picasso.get().load(downloadUri.toString()).into(binding.ivCamera)
+                    val downloadUri = task.result.toString()
+                    Log.i("URKO2", downloadUri)
+                    viewModel.setUrlImage(downloadUri)
+                    Picasso.get().load(downloadUri).resize(50, 50).into(binding.ivCamera)
                 }
             }
         }

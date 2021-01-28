@@ -1,5 +1,6 @@
 package br.com.lucolimac.desafio04
 
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,6 +15,7 @@ import androidx.navigation.fragment.navArgs
 import br.com.lucolimac.desafio04.databinding.FragmentCadastroBinding
 import br.com.lucolimac.desafio04.databinding.FragmentDetailBinding
 import br.com.lucolimac.desafio04.databinding.FragmentGameListBinding
+import com.squareup.picasso.Picasso
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -43,7 +45,10 @@ class DetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val nameGame = args.nameGame
         viewModel.game.observe(viewLifecycleOwner) {
-            "${it.name} \n ${it.year}".also { binding.tvResume.text = it }
+            Picasso.get().load(it.imageUrl)
+                .placeholder(R.drawable.progress_animation).into(binding.imageView);
+            binding.tvYear.text = it.year.toString()
+            binding.tvName.text = it.name
             binding.tvOverview.text = it.overview
         }
         viewModel.readGame(nameGame)

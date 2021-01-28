@@ -27,10 +27,10 @@ class GameFragment : Fragment(), GameAdapter.OnClickGame {
         val gridLayoutManager = GridLayoutManager(context, 3)
         gridLayoutManager.isUsingSpansToEstimateScrollbarDimensions = true
         items = arrayListOf(
-            Game(Uri.parse(""), "GOD", 2015,"TESTE"),
-            Game(Uri.parse(""), "GOD", 2015,"TESTE"),
-            Game(Uri.parse(""), "GOD", 2015,"TESTE"),
-            Game(Uri.parse(""), "GOD", 2015,"TESTE"),
+            Game("", "GOD", 2015, "TESTE"),
+            Game("", "GOD", 2015, "TESTE"),
+            Game("", "GOD", 2015, "TESTE"),
+            Game("", "GOD", 2015, "TESTE"),
         )
         adapter.addComic(items)
         binding.list.adapter = adapter
