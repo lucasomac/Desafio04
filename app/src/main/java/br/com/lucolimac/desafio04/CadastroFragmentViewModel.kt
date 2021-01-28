@@ -13,8 +13,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 class CadastroFragmentViewModel : ViewModel() {
     // Create a storage reference from the app
     var dbFireStore = FirebaseFirestore.getInstance()
-    var crFireStorage = dbFireStore.collection("games")
-    val games = MutableLiveData<List<Game>>()
+    var crFireStore = dbFireStore.collection("games")
+
     val game = MutableLiveData<Game>()
     val photo = MutableLiveData<String>()
     fun getGameToInsert(
@@ -33,7 +33,7 @@ class CadastroFragmentViewModel : ViewModel() {
 
     fun sendGame(game: MutableMap<String, String>) {
         val nome = game["name"]
-        crFireStorage.document(nome.toString()).set(game).addOnSuccessListener {
+        crFireStore.document(nome.toString()).set(game).addOnSuccessListener {
 //            Log.i("STORE", it.toString())
         }.addOnFailureListener {
 //            Log.i("STORE", it.toString())
@@ -41,24 +41,24 @@ class CadastroFragmentViewModel : ViewModel() {
     }
 
     fun updateGame(name: String, game: MutableMap<String, String>) {
-        crFireStorage.document(name).update(game as Map<String, Any>)
+        crFireStore.document(name).update(game as Map<String, Any>)
 
     }
 
     fun deleteProd(name: String) {
-        crFireStorage.document(name).delete().addOnSuccessListener {
+        crFireStore.document(name).delete().addOnSuccessListener {
 
         }
     }
 
     fun readGame(name: String) {
-        crFireStorage.document(name).get()
+        crFireStore.document(name).get()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     game.value = Game(
                         task.result!!.data!!["image"] as String,
                         task.result!!.data!!["name"] as String,
-                        task.result!!.data!!["year"] as Int,
+                        task.result!!.data!!["year"] as String,
                         task.result!!.data!!["overview"] as String
                     )
 
@@ -71,29 +71,4 @@ class CadastroFragmentViewModel : ViewModel() {
     fun setUrlImage(image: String) {
         photo.value = image
     }
-
-    fun readGames() {
-        crFireStorage.get()
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    val list = mutableListOf<Game>()
-                    for (document in task.result!!) {
-                        list.add(
-                            Game(
-                                document["image"] as String,
-                                document["name"] as String,
-                                document["year"] as Int,
-                                document["overview"] as String
-                            )
-                        )
-                    }
-                    games.value = list
-                } else {
-                    Log.w("TA G", "Error getting documents.", task.exception)
-                }
-            }
-    }
-    //Configura a imagem para
-
-
 }

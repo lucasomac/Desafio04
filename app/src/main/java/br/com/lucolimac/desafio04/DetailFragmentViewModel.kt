@@ -18,7 +18,7 @@ class DetailFragmentViewModel : ViewModel() {
                     game.value = Game(
                         task.result!!.data!!["image"] as String,
                         task.result!!.data!!["name"] as String,
-                        task.result!!.data!!["year"].toString().toInt(),
+                        task.result!!.data!!["year"] as String,
                         task.result!!.data!!["overview"] as String
                     )
                 } else {
