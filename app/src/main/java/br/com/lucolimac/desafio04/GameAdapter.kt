@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import br.com.lucolimac.desafio04.model.Game
+import com.squareup.picasso.Picasso
 
 
 class GameAdapter(
@@ -22,7 +23,8 @@ class GameAdapter(
 
     override fun onBindViewHolder(holder: GameViewHolder, position: Int) {
         val item = games[position]
-//        holder.ivCapa.setImageURI(Uri.parse(item.image))
+        Picasso.get().load(item.imageUrl).placeholder(R.drawable.progress_animation)
+            .into(holder.ivCapa)
         holder.tvName.text = item.name
         holder.tvAno.text = item.year.toString()
     }

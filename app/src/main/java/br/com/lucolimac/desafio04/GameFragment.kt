@@ -15,13 +15,13 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import br.com.lucolimac.desafio04.databinding.FragmentGameListBinding
 import br.com.lucolimac.desafio04.model.Game
+import java.util.*
+import kotlin.collections.ArrayList
 
 class GameFragment : Fragment(), GameAdapter.OnClickGame {
 
     private lateinit var _binding: FragmentGameListBinding
     private val binding get() = _binding
-
-    //    private var adapter = GameAdapter(this)
     private lateinit var adapter: GameAdapter
     private lateinit var items: ArrayList<Game>
     val viewModel by viewModels<GameFragmentViewModel> {
@@ -46,16 +46,11 @@ class GameFragment : Fragment(), GameAdapter.OnClickGame {
         super.onViewCreated(view, savedInstanceState)
         binding.list.adapter = adapter
         binding.list.hasFixedSize()
-
         viewModel.games.observeForever {
             items = it
-            Log.i("ITEMS11", items.toString())
             adapter.addGame(items)
         }
         viewModel.readGames()
-//        adapter.addGame(items)
-        Log.i("ITEMS12", items.toString())
-
         binding.fab.setOnClickListener {
             findNavController().navigate(R.id.action_gameFragment_to_cadastroFragment)
         }
