@@ -45,11 +45,8 @@ class DetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val nameGame = args.nameGame
         viewModel.game.observe(viewLifecycleOwner) {
-            /*
-            Descomentar linha do Picaso quando a URL estiver OK
-             */
-//            Picasso.get().load(it.imageUrl)
-//                .placeholder(R.drawable.progress_animation).into(binding.imageView);
+            Picasso.get().load(it.imageUrl)
+                .placeholder(R.drawable.progress_animation).into(binding.imageView);
             binding.tvYear.text = it.year.toString()
             binding.tvName.text = it.name
             binding.tvOverview.text = it.overview

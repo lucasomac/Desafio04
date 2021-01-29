@@ -3,7 +3,6 @@ package br.com.lucolimac.desafio04
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,6 +20,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.squareup.picasso.Picasso
 import dmax.dialog.SpotsDialog
+import java.util.*
 
 class CadastroFragment : Fragment() {
     private lateinit var _binding: FragmentCadastroBinding
@@ -54,7 +54,9 @@ class CadastroFragment : Fragment() {
     fun config() {
         alertDialog = SpotsDialog.Builder().setContext(context).build()
         firebaseStorage = FirebaseStorage.getInstance()
-        firebaseStorageReference = firebaseStorage.getReference("games.jpg")
+        firebaseStorageReference =
+            FirebaseStorage.getInstance()
+                .getReference("${Date().day}${Date().month}${Date().year}-${Date().hours}${Date().minutes}${Date().seconds}")
         firebaseFirestore = FirebaseFirestore.getInstance()
         firebaseFirestoreReference = firebaseFirestore.collection("games")
     }
@@ -68,7 +70,8 @@ class CadastroFragment : Fragment() {
         }
         if (!nameGame.isEmpty()) {
             viewModel.game.observe(viewLifecycleOwner) {
-//                Picasso.get().load(it.imageUrl).resize(50, 50).into(binding.ivCamera)
+                Picasso.get().load(it.imageUrl).resize(150, 150)
+                    .placeholder(R.drawable.progress_animation).into(binding.ivCamera)
                 binding.include.editTextTextName.setText(it.name)
                 binding.include.editTextTextCreatedAt.setText(it.year.toString())
                 binding.include.editTextTextDescription.setText(it.overview)
@@ -77,7 +80,6 @@ class CadastroFragment : Fragment() {
 
         }
         binding.include.btnCreateGame.setOnClickListener {
-            Log.i("LOH", url)
             if (nameGame.isEmpty()) {
                 viewModel.sendGame(
                     viewModel.getGameToInsert(
@@ -117,7 +119,7 @@ class CadastroFragment : Fragment() {
         if (requestCode == CODE_IMAGE) {
             alertDialog.show()
             val uploadTask = firebaseStorageReference.putFile(data!!.data!!)
-            uploadTask.continueWith { task ->
+            uploadTask.continueWithTask { task ->
                 if (task.isSuccessful) {
                     Toast.makeText(context, "Imagem enviada", Toast.LENGTH_LONG).show()
                 }
@@ -126,11 +128,10 @@ class CadastroFragment : Fragment() {
                 if (task.isSuccessful) {
                     val downloadUri = task.result
                     val url = downloadUri!!.toString()
-//                        .substring(0, downloadUri.toString().indexOf("&token"))
-                    Log.i("URKO2", url)
                     viewModel.setUrlImage(url)
                     alertDialog.dismiss()
-                    Picasso.get().load(url).resize(50, 50).into(binding.ivCamera)
+                    Picasso.get().load(url).resize(150, 150)
+                        .placeholder(R.drawable.progress_animation).into(binding.ivCamera)
                 }
             }
         }
