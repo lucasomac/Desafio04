@@ -13,7 +13,7 @@ import br.com.lucolimac.desafio04.model.Game
 class GameAdapter(
     val listener: OnClickGame,
 ) : RecyclerView.Adapter<GameAdapter.GameViewHolder>() {
-    var games = ArrayList<Game>()
+    var games = arrayListOf<Game>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.game_item, parent, false)
@@ -24,17 +24,12 @@ class GameAdapter(
         val item = games[position]
 //        holder.ivCapa.setImageURI(Uri.parse(item.image))
         holder.tvName.text = item.name
-        holder.tvAno.text = item.ano.toString()
+        holder.tvAno.text = item.year.toString()
     }
 
     override fun getItemCount(): Int = games.size
     fun addGame(list: ArrayList<Game>) {
-        games.addAll(list)
-        notifyDataSetChanged()
-    }
-
-    fun addComic(list: ArrayList<Game>) {
-        games.addAll(list)
+        games = list
         notifyDataSetChanged()
     }
 
