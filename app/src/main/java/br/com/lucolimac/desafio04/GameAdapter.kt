@@ -23,10 +23,11 @@ class GameAdapter(
 
     override fun onBindViewHolder(holder: GameViewHolder, position: Int) {
         val item = games[position]
-        Picasso.get().load(item.imageUrl).placeholder(R.drawable.progress_animation)
-            .into(holder.ivCapa)
+        if (item.imageUrl.isNotEmpty())
+            Picasso.get().load(item.imageUrl).placeholder(R.drawable.progress_animation)
+                .into(holder.ivCapa)
         holder.tvName.text = item.name
-        holder.tvAno.text = item.year.toString()
+        holder.tvAno.text = item.year
     }
 
     override fun getItemCount(): Int = games.size
